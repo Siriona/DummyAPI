@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "88d4c6ea-1a46-42b6-b305-d2389639eda8",
+		"name": "Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26123828"
+	},
+	"item": [
+		{
+			"name": "GetPostList",
+			"item": [
+				{
+					"name": "GetPostList-valid",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetPostList-invalid (POST)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/post",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"post"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "CreatePost",
+			"item": [
+				{
+					"name": "Positive",
+					"item": [
+						{
+							"name": "CreatePost (owner = real id)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (image is missing)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (text = 6 symbols)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"qwerty\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (text is missing)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (text = 50 symbols)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"qwertyuiopqwertyuiopqwertyuiopqwertyuiopqwertyuiop\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Negative",
+					"item": [
+						{
+							"name": "CreatePost (text = 5 symbols)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"qwert\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (text = 0 symbols)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (owner = wrong id)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\",\r\n            \"owner\": \"546489jdrfhgkfg\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (owner = number)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\",\r\n            \"owner\": {{$randomInt}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (owner is missing)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (text = Integer)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": 123,\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreatePost (likes = string)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": \"qwewegeb\",\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{host}}/post/create",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"post",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{app-id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "owner_id",
+			"value": "60d0fe4f5311236168a109d9",
+			"type": "string"
+		}
+	]
+}

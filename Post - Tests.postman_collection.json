@@ -1,0 +1,623 @@
+{
+	"info": {
+		"_postman_id": "2d23a5b2-f74f-4424-92a8-b681fda0fb20",
+		"name": "Post - Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26123828"
+	},
+	"item": [
+		{
+			"name": "GetPostList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"owner_id\", jsonData.data[18].owner.id);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name = OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data is array\", function () {\r",
+							"    pm.expect(jsonData.data).to.be.an('array')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].id is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].image is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].likes is number\", function () {\r",
+							"    pm.expect(jsonData.data[0].likes).to.be.an('number')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].tags is array\", function () {\r",
+							"    pm.expect(jsonData.data[0].tags).to.be.an('array')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].tags[0] is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].tags[0]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].tags[1] is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].tags[1]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].tags[2] is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].tags[2]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].text is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].text).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].publishDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].updatedDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check body data[0].owner is object\", function () {\r",
+							"    pm.expect(jsonData.data[0].owner).to.be.an('object')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].owner.id is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].owner.id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].owner.title is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].owner.title).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].owner.firstName is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].owner.firstName).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].owner.lastName is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].owner.lastName).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[0].owner.picture is string\", function () {\r",
+							"    pm.expect(jsonData.data[0].owner.picture).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[19].id is string\", function () {\r",
+							"    pm.expect(jsonData.data[19].id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body data[20] is undefined\", function () {\r",
+							"    pm.expect(jsonData.data[20]).to.be.an('undefined')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check limit is 20\", function () {\r",
+							"    pm.expect(jsonData.limit).to.eql(20);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check page is 0\", function () {\r",
+							"    pm.expect(jsonData.page).to.eql(0);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body total is number\", function () {\r",
+							"    pm.expect(jsonData.total).to.be.a('number')\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreatePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.collectionVariables.set(\"post_id\", jsonData.id);\r",
+							"\r",
+							"\r",
+							"pm.collectionVariables.set(\"post_likes\", jsonData.likes);\r",
+							"\r",
+							"pm.collectionVariables.set(\"post_text\", jsonData.text);\r",
+							"\r",
+							"pm.collectionVariables.set(\"owner_title\", jsonData.owner.title);\r",
+							"\r",
+							"pm.collectionVariables.set(\"owner_firstName\", jsonData.owner.firstName);\r",
+							"\r",
+							"pm.collectionVariables.set(\"owner_lastName\", jsonData.owner.lastName);\r",
+							"\r",
+							"pm.collectionVariables.set(\"owner_picture\", jsonData.owner.picture);\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name = OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body id is string\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body image is string\", function () {\r",
+							"    pm.expect(jsonData.id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body likes is number\", function () {\r",
+							"    pm.expect(jsonData.likes).to.be.an('number')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags is array\", function () {\r",
+							"    pm.expect(jsonData.tags).to.be.an('array')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[0] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[0]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[1] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[1]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[2] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[2]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body text is string\", function () {\r",
+							"    pm.expect(jsonData.text).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.publishDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.updatedDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check body owner is object\", function () {\r",
+							"    pm.expect(jsonData.owner).to.be.an('object')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.id is string\", function () {\r",
+							"    pm.expect(jsonData.owner.id).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.title is string\", function () {\r",
+							"    pm.expect(jsonData.owner.title).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.firstName is string\", function () {\r",
+							"    pm.expect(jsonData.owner.firstName).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.lastName is string\", function () {\r",
+							"    pm.expect(jsonData.owner.lastName).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.picture is string\", function () {\r",
+							"    pm.expect(jsonData.owner.picture).to.be.an('String')\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n            \"image\": \"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\",\r\n            \"likes\": {{$randomInt}},\r\n            \"tags\": [\r\n                \"animal\",\r\n                \"dog\",\r\n                \"golden retriever\"\r\n            ],\r\n            \"text\": \"{{$randomLoremSentence}}\",\r\n            \"owner\": \"{{owner_id}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/create",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetPostByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name = OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check id = {{post_id}}\", function () {\r",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"post_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body image\", function () {\r",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body likes\", function () {\r",
+							"    pm.expect(jsonData.likes).to.eql(pm.collectionVariables.get(\"post_likes\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body text\", function () {\r",
+							"    pm.expect(jsonData.text).to.eql(pm.collectionVariables.get(\"post_text\"));\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check body tags is array\", function () {\r",
+							"    pm.expect(jsonData.tags).to.be.an('array')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[0] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[0]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[1] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[1]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[2] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[2]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body text is string\", function () {\r",
+							"    pm.expect(jsonData.text).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.publishDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.updatedDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check body owner is object\", function () {\r",
+							"    pm.expect(jsonData.owner).to.be.an('object')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.id\", function () {\r",
+							"    pm.expect(jsonData.owner.id).to.eql(pm.collectionVariables.get(\"owner_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.firstName\", function () {\r",
+							"    pm.expect(jsonData.owner.firstName).to.eql(pm.collectionVariables.get(\"owner_firstName\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.lastName\", function () {\r",
+							"    pm.expect(jsonData.owner.lastName).to.eql(pm.collectionVariables.get(\"owner_lastName\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.picture\", function () {\r",
+							"    pm.expect(jsonData.owner.picture).to.eql(pm.collectionVariables.get(\"owner_picture\"));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditPost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							" var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name = OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check id = {{post_id}}\", function () {\r",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"post_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body image\", function () {\r",
+							"    pm.expect(jsonData.image).to.eql(\"https://img.dummyapi.io/photo-1564694202779-bc908c327862.jpg\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body likes\", function () {\r",
+							"    pm.expect(jsonData.likes).to.eql(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body text EDITED\", function () {\r",
+							"    pm.expect(jsonData.text).to.eql(pm.collectionVariables.get(\"post_text\") + \" EDITED\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check body tags is array\", function () {\r",
+							"    pm.expect(jsonData.tags).to.be.an('array')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[0] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[0]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[1] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[1]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body tags[2] is string\", function () {\r",
+							"    pm.expect(jsonData.tags[2]).to.be.an('string')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body text is string\", function () {\r",
+							"    pm.expect(jsonData.text).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body publishDate is string\", function () {\r",
+							"    pm.expect(jsonData.publishDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body updatedDate is string\", function () {\r",
+							"    pm.expect(jsonData.updatedDate).to.be.an('String')\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Check body owner is object\", function () {\r",
+							"    pm.expect(jsonData.owner).to.be.an('object')\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.id\", function () {\r",
+							"    pm.expect(jsonData.owner.id).to.eql(pm.collectionVariables.get(\"owner_id\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.firstName\", function () {\r",
+							"    pm.expect(jsonData.owner.firstName).to.eql(pm.collectionVariables.get(\"owner_firstName\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.lastName\", function () {\r",
+							"    pm.expect(jsonData.owner.lastName).to.eql(pm.collectionVariables.get(\"owner_lastName\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check body owner.picture\", function () {\r",
+							"    pm.expect(jsonData.owner.picture).to.eql(pm.collectionVariables.get(\"owner_picture\"));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"{{post_text}} EDITED\",\r\n    \"likes\": 1000\r\n\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/post/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeletePost",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name is OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    pm.expect(jsonData.id).to.eql(pm.collectionVariables.get(\"post_id\"));\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/post/{{post_id}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"post",
+						"{{post_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "{{app-id}}",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "app-id",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "owner_id",
+			"value": ""
+		},
+		{
+			"key": "post_id",
+			"value": ""
+		},
+		{
+			"key": "post_likes",
+			"value": ""
+		},
+		{
+			"key": "post_text",
+			"value": ""
+		},
+		{
+			"key": "owner_title",
+			"value": ""
+		},
+		{
+			"key": "owner_firstName",
+			"value": ""
+		},
+		{
+			"key": "owner_lastName",
+			"value": ""
+		},
+		{
+			"key": "owner_picture",
+			"value": ""
+		}
+	]
+}
